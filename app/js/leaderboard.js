@@ -54,7 +54,21 @@ function populateLeaderBoard(board, data) {
 
 	populateTableHeader(thead, headers);
 
-	populateTableBody(tbody, data);
+	d3.json("scoredataforpia.json", function(error, data) {
+	  if (error) throw error;
+		
+	  var count = 0;
+	    setInterval(function(){ 
+	         if(count <= data.length - 2) {
+		            count ++;
+		        } 
+	            d3.select("tbody").selectAll('tr').remove();
+	            // console.log(data[count]);
+				populateTableBody(tbody, data[count]);
+				// d3.select("tbody").selectAll('tr').remove();
+
+	    }, 200)
+	 });
 	
 }
 
@@ -73,7 +87,6 @@ function populateTableHeader(thead, data) {
 function populateTableBody(tbody, data) {
 
 	data.slice(0, 5).forEach(function(d, i) {
-
 		
 
 		if(d.name == 'algowinthis') {

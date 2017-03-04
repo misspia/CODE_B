@@ -63,7 +63,18 @@ body {
   font-size: 1.3em;
   font-weight: 400;
   font-family: "VT323", monospace;
-  letter-spacing: 1px; }
+  letter-spacing: 1px;
+  padding: 0 0.5em; }
+
+.section {
+  width: 50%; }
+
+.img {
+  position: absolute;
+  transform: TRANSLATEY(21em) translateX(58em) rotate(10deg); }
+
+#pie_graph_container {
+  width: 100%; }
 
 #quad_graph_container, #leaderboard {
   width: 65vh; }
@@ -71,7 +82,8 @@ body {
 #mine_quadrants {
   height: 40vh; }
   #mine_quadrants rect {
-    fill: #7da8bd; }
+    /*fill: $baseColor;*/
+    fill: #ff7f0e; }
 
 #line_graph {
   height: 60vh; }
@@ -86,6 +98,7 @@ body {
   background-color: rgba(255, 255, 255, 0.3); }
 
 #leaderboard td {
+  color: #d62728;
   text-align: center;
   padding: 0 0.5em; }
 
@@ -98,3 +111,12 @@ body {
 .axis text {
   fill: #7da8bd;
   font-size: 1.3em; }
+
+div#pie_graph {
+  height: 60vh; }
+  div#pie_graph .arc path {
+    stroke: blue;
+    stroke-width: 2px; }
+  div#pie_graph .arc text {
+    stroke: hotpink;
+    z-index: 99999; }

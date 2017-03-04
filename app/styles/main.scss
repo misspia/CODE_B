@@ -6,15 +6,24 @@
 @import 'partials/layout';
 
 body {
-	
-	background-color: $background;
-	
+	background-color: $background;	
 	color: $baseColor;
 	font-size:1.3em;
 	font-weight:400;
-
 	font-family:$font;
 	letter-spacing: 1px;
+	padding:0 0.5em;
+}
+.section {
+	width:50%;
+}
+.img{
+	position:absolute;
+	transform: TRANSLATEY(21em) translateX(58em) rotate(10deg);
+}
+
+#pie_graph_container{ 
+	width:100%;
 }
 
 #quad_graph_container, #leaderboard{
@@ -24,7 +33,8 @@ body {
 	height: 40vh;
 
 	rect{
-		fill: $baseColor;
+		/*fill: $baseColor;*/
+		fill: #ff7f0e;
 	}
 }
 
@@ -39,11 +49,13 @@ body {
 }
 
 #leaderboard{
+
 	.algowin{
 		transition: all 0.4s;
 		background-color:rgba(255,255,255, 0.3);
 	}
 	td{
+		color:#d62728;
 		text-align:center;
 		padding:0 0.5em;
 	}
@@ -62,5 +74,20 @@ body {
 	text{
 		fill: $baseColor;
 		font-size:1.3em;
+	}
+}
+
+div#pie_graph{
+	height:60vh;
+
+	.arc{
+		path{
+			stroke:blue;
+			stroke-width:2px;
+		}
+		text{
+			stroke:hotpink;
+			z-index:99999;
+		}
 	}
 }

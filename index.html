@@ -5,33 +5,43 @@
 	<title>ALGOWINTHIS_UI</title>
 	<link rel="stylesheet" type="text/css" href="app/styles/main.css">
 </head>
-<body class="row">
-<div class = "col space-around align-center section">
-	<div id="leaderboard" class="col space-around align-center">
-		<h1 class="title">Leaderboard</h1>
-		<table>
-			<thead></thead>
-			<tbody></tbody>
-		</table>
-	</div>
-	<div id="quad_graph_container">
-		<h1 class="title">Number of Mines by Quadrant</h1>
-		<div id="mine_quadrants"></div>
-	</div>
-</div>	
-<div class="section">
+<body >
+<div class="row space-between">
+	<h1>< ALGOWINTHIS! /></h1>
+	<h2 id="data_status"></h2>
+</div>
+<div class="img">
+	<img src="app/goose.png">
+</div>
+<div class="row">
+	<div class = "col space-around align-center section">
+		<div id="leaderboard" class="col space-around align-center">
+				<h1 class="title">Leaderboard</h1>
+
+			<table>
+				<thead></thead>
+				<tbody></tbody>
+			</table>
+		</div>
+		<div id="quad_graph_container">
+			<h1 class="title">Number of Mines by Quadrant</h1>
+			<div id="mine_quadrants"></div>
+		</div>
+	</div>	
+	<div class="section col space-around align-center">
+		<div id="pie_graph_container">
+			<h1 class="title">Mines Held</h1>
+			<div id="pie_graph" class="row center"></div>
+		</div>
+	</div>	
+</div>
 	
-</div>	
 		
-	<!-- <div id="line_graph"></div>
-	<div id=""></div>
-	<div id=""></div>
-	<div id=""></div> -->
 
 </body>
 <script type="text/javascript" src = "node_modules/d3/build/d3.min.js"></script>
 <script type="text/javascript" src = "app/js/leaderboard.js"></script>
+<script type="text/javascript" src = "app/js/pie.js"></script>
 <script type="text/javascript" src = "app/js/mine_quadrants.js"></script>
-<!-- <script type="text/javascript" src = "app/js/line_graph.js"></script> -->
-<script type="text/javascript" src = "app/js/main.js"></script>
+
 </html>
