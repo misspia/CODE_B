@@ -4,7 +4,7 @@ import math
 #  before oscillation principle kicks in
 #osc_weight is between 0 and 1, 0.9 => average with 0.9 weighted on vector
 
-def rocketscience2(x,y,dx,dy,tx,ty,width,height,osc_trigger=0.3,osc_weight=0.1):
+def rocketscience2(x,y,dx,dy,tx,ty,width,height,osc_trigger=0.3,osc_weight=0.2):
 
     ddx = abs(x - tx)
     if (ddx > width/2):

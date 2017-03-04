@@ -46,6 +46,11 @@ def scoreboard(input):
     
     return scores
 
+def pia_scoreboard(input):
+    scoreboard(input)
+    
+
+
 def configurations(input):
     myconfigs = input.split()[1:]
     configs = {"mapwidth":int(myconfigs[1]), "mapheight":int(myconfigs[3]), "captureradius":float(myconfigs[5]),"visionradius":float(myconfigs[7]),"friction":float(myconfigs[9]),"brakefriction":float(myconfigs[11]),"bombplaceradius":float(myconfigs[13]),"bombeffectradius":float(myconfigs[15]),"bombdelay":float(myconfigs[17]),"bombpower":float(myconfigs[19]),"scanradius":float(myconfigs[21]),"scandelay":float(myconfigs[23])}
