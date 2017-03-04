@@ -19,7 +19,8 @@ def send(sock, * commands):
     sock.sendall(bytes(data, "utf-8"))
     sfile = sock.makefile()
     rline = sfile.readline()
-    print("Server: {0}\n".format(rline.strip()))
+    print("Server: {0}".format(rline))
+    return rline
 
 def run(user, password, * commands):
     data = user + " " + password + "\n" + "\n".join(commands) + "\nCLOSE_CONNECTION\n"
