@@ -32,7 +32,7 @@ def status(input):
             break
         bombs.append({"x":float(mystatus[bombs_split+2+i*2]),"y":float(mystatus[bombs_split+3+i*2])})
               
-    return {"x":x, "y":y, "dx":dx, "dy":dy, "mines":mines "players":players,"bombs":bombs}
+    return {"x":x, "y":y, "dx":dx, "dy":dy, "mines":mines, "players":players,"bombs":bombs}
 
 def scoreboard(input):
     scores = []
