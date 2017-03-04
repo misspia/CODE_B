@@ -13,20 +13,26 @@ def status(input):
     num_players = int(mystatus[players_split+1])
     num_bombs = int(mystatus[bombs_split+1])    
 
+    mines = []
     players = []
     bombs = []
+
+    for i in range(num_mines):
+        if num_mines == 0:
+            break
+        mines.append({"x":float(mystatus[mines_split+3+i*3]),"y":float(mystatus[mines_split+4+i*3])})
 
     for i in range(num_players):
         if num_players == 0:
             break
-        players.append({"x":float(mystatus[players_split+2+i*0]),"y":float(mystatus[players_split+2+i*1]),"dx":float(mystatus[players_split+2+i*2]),"dy":float(mystatus[players_split+2+i*3])})
+        players.append({"x":float(mystatus[players_split+2+i*4]),"y":float(mystatus[players_split+3+i*4]),"dx":float(mystatus[players_split+3+i*4]),"dy":float(mystatus[players_split+3+i*4])})
     
     for i in range(num_bombs):
         if num_bombs == 0:
             break
-        bombs.append({"x":float(mystatus[bombs_split+2+i*0]),"y":float(mystatus[bombs_split+2+i*1])})
-        
-    return {"x":x, "y":y, "dx":dx, "dy":dy, "mines":num_mines, "players":players,"bombs":bombs}
+        bombs.append({"x":float(mystatus[bombs_split+2+i*2]),"y":float(mystatus[bombs_split+3+i*2])})
+              
+    return {"x":x, "y":y, "dx":dx, "dy":dy, "mines":mines "players":players,"bombs":bombs}
 
 def scoreboard(input):
     scores = []
@@ -51,20 +57,27 @@ def scan(input):
     num_players = int(myscan[players_split+1])
     num_bombs = int(myscan[bombs_split+1])    
 
+    mines = []
     players = []
     bombs = []
+
+    for i in range(num_mines):
+        if num_mines == 0:
+            break
+        mines.append({"x":float(myscan[mines_split+3+i*3]),"y":float(myscan[mines_split+4+i*3])})
 
     for i in range(num_players):
         if num_players == 0:
             break
-        players.append({"x":float(myscan[players_split+2+i*0]),"y":float(myscan[players_split+2+i*1]),"dx":float(myscan[players_split+2+i*2]),"dy":float(myscan[players_split+2+i*3])})
+        players.append({"x":float(myscan[players_split+2+i*4]),"y":float(myscan[players_split+3+i*4]),"dx":float(myscan[players_split+3+i*4]),"dy":float(myscan[players_split+3+i*4])})
     
     for i in range(num_bombs):
         if num_bombs == 0:
             break
-        bombs.append({"x":float(myscan[bombs_split+2+i*0]),"y":float(myscan[bombs_split+2+i*1])})
+        bombs.append({"x":float(myscan[bombs_split+2+i*2]),"y":float(myscan[bombs_split+3+i*2])})
         
-    return {"mines":num_mines, "players":players,"bombs":bombs}
+    return {"mines":mines, "players":players,"bombs":bombs}
 
 scantest="SCAN_OUT  MINES 0 PLAYERS 1 6859.416121534596 6988.998490048922 9.899999999995158 7.21474662271831E-12 BOMBS 0"
-print(scan(scantest))
+scantest2="SCAN_OUT  MINES 2 -- 9791.988798920302 859.919907528256 -- 432.2832063170068 510.75312424783027 PLAYERS 0 BOMBS 0"
+print(scan(scantest2))
