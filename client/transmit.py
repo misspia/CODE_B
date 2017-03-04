@@ -3,7 +3,7 @@ import sys
 
 def connect(host, port, user, password):
     data = user + " " + password + "\n"
-    print("Client: {0}".format(data))
+    #print("Client: {0}".format(data))
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.connect((host, port))
     sock.sendall(bytes(data, "utf-8"))
@@ -11,12 +11,12 @@ def connect(host, port, user, password):
 
 def send(sock, * commands):
     data = "\n".join(commands) + "\n"
-    print("Client: {0}".format(data), end="")
+    #print("Client: {0}".format(data), end="")
 
     sock.sendall(bytes(data, "utf-8"))
     sfile = sock.makefile()
     rline = sfile.readline()
-    print("Server: {0}".format(rline))
+    #print("Server: {0}".format(rline))
     return rline
 
 def run(user, password, * commands):
