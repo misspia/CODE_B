@@ -1,0 +1,33 @@
+{
+  "name": "code_b_ui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/misspia/CODE_B.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/misspia/CODE_B/issues"
+  },
+  "homepage": "https://github.com/misspia/CODE_B#readme",
+  "dependencies": {
+    "express": "^4.15.0",
+    "http": "0.0.0",
+    "socket.io": "^1.7.3"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.18.2",
+    "gulp": "^3.9.1",
+    "gulp-sass": "^2.3.2",
+    "run-sequence": "^1.2.2"
+  }
+}
