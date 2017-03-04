@@ -1,6 +1,7 @@
 from transmit import connect, send
 from parser import *
 from navigation import *
+from mines import *
 import random
 import time
 import math
@@ -18,9 +19,10 @@ config = configurations(send(sock, "CONFIGURATIONS"))
 mapwidth = config['mapwidth']
 mapheight = config['mapheight']
 scandelay = config['scandelay']
-targetx = -1
-targety = -1
-num_mines = 0
+minelist = []
+visited = []
+closest = {"x": -1,"y": -1}
+iii = 0
 
 while(True):
     x = random.randint(0, mapwidth)
@@ -28,25 +30,25 @@ while(True):
     sc = send(sock, "SCAN {0} {1}".format(x, y))
     if "ERROR" not in sc:
         sc = scan(sc)
-        if (targetx < 0 and len(sc['mines']) > 0):
-            targetx = sc['mines'][0]['x']
-            targety = sc['mines'][0]['y']
+        minelist = update_minelist(sc['mines'], minelist, visited)[0]
     st = status(send(sock, "STATUS"))
-    d = distance_donut(st['x'], st['y'], targetx, targety, mapwidth, mapheight)
 
-    #print("Num Mines: {0}".format(num_mines))
-    if (targetx > 0):
-        speed = min(1, d / (mapwidth / 20))
-        rad = calc_rad_donut(st['x'], st['y'], targetx, targety, mapwidth, mapheight)
+    if (iii % 10 == 0):
+        print("Num Mines To Explore: {0}".format(len(minelist)))
+        print("Visited Mines: {0}".format(len(visited)))
+    if (len(minelist) > 0 and closest['x'] < 0):
+        closest = closest_mine(st['x'], st['y'], minelist, mapwidth, mapheight)
+        minelist.remove(closest)
+        visited.append(closest)
+    else:
+        d = distance_donut(st['x'], st['y'], closest['x'], closest['y'], mapwidth, mapheight)
+        speed = min(1, d / (mapwidth / 10))
+        rad = calc_rad_donut(st['x'], st['y'], closest['x'], closest['y'], mapwidth, mapheight)
         send(sock, "ACCELERATE {0} {1}".format(rad, speed))
-        print("Speed: {0}".format(speed))
-        print("Radians: {0}".format(rad / math.pi))
-    print("Target: {0}, {1}".format(targetx, targety))
-    print("Me: {0}, {1}".format(st['x'], st['y']))
-    print("Distance: {0}".format(d))
-    if (d < 10):
-        targetx = -1
-        targety = -1
-        send(sock, "ACCELERATE 1 1")
-    print("")
-    #time.sleep(0.5)
+        if (d < 10):
+            closest = {"x": -1,"y": -1}
+
+    if len(visited) >= 20:
+        minelist = minelist + visited[0:10]
+        visited = visited[10:]
+    iii += 1

@@ -23,8 +23,6 @@ def calc_rad_donut(x1, y1, x2, y2, width, height):
         else:
             y2 += height
 
-    print(x1, y1, x2, y2)
-
     return calc_rad(x1, y1, x2, y2)
 
 def distance(x1, y1, x2, y2):
