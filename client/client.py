@@ -65,7 +65,10 @@ while(True):
         elif start_brake and vel(st['dx'], st['dy']) < 2 and d > mapwidth/3:
             start_brake = False
             print("Full Thrust")
-        elif start_brake and vel(st['dx'], st['dy']) < 1:
+        elif start_brake and vel(st['dx'], st['dy']) < 1 and d > mapwidth/4:
+            start_brake = False
+            print("Full Thrust")
+        elif start_brake and vel(st['dx'], st['dy']) < 0.5:
             start_brake = False
             print("Full Thrust")
         if (start_brake):
