@@ -77,8 +77,9 @@ def for_pia1():
         else:
             exportlist.append({"Time":i,"Q1":exportlist[i-1]["Q1"],"Q2":exportlist[i-1]["Q2"],"Q3":exportlist[i-1]["Q3"],"Q4":exportlist[i-1]["Q4"]})
     
-    with open('minedataforpia.json', 'w') as fp:
-        json.dump(exportlist, fp)
+    return exportlist
+    #with open('minedataforpia.json', 'w') as fp:
+    #    json.dump(exportlist, fp)
 
 """
 for i in range(len())
