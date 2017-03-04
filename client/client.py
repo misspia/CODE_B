@@ -6,11 +6,11 @@ import random
 import time
 import math
 
-HOST, PORT = "codebb.cloudapp.net", 17429
-USER, PASSWORD = "algowinthis", "unicorns578"
+#HOST, PORT = "codebb.cloudapp.net", 17429
+#USER, PASSWORD = "algowinthis", "unicorns578"
 
-#HOST, PORT = "localhost", 17429
-#USER, PASSWORD = "a", "a"
+HOST, PORT = "localhost", 17429
+USER, PASSWORD = "a", "a"
 
 sock = connect(HOST, PORT, USER, PASSWORD)
 
