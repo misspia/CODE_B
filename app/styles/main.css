@@ -1,2 +1,100 @@
+@import url("https://fonts.googleapis.com/css?family=Raleway");
+@import url("https://fonts.googleapis.com/css?family=VT323");
+.title {
+  font-size: 2em;
+  color: #538da5;
+  text-align: center;
+  line-height: 1.2;
+  font-weight: 500;
+  transform-text: uppercase; }
+
+.row, .col {
+  display: flex;
+  flex-wrap: wrap; }
+
+.row {
+  flex-direction: row; }
+
+.col {
+  flex-direction: column; }
+
+.center {
+  justify-content: center; }
+
+.flex-end {
+  justify-content: flex-end; }
+
+.flex-start {
+  justify-content: flex-start; }
+
+.space-around {
+  justify-content: space-around; }
+
+.space-between {
+  justify-content: space-between; }
+
+.align-center {
+  align-items: center; }
+
+.align-start {
+  align-items: flex-start; }
+
+.align-end {
+  align-items: flex-end; }
+
+.full-width {
+  width: 100%; }
+
+.full-height {
+  height: 100%; }
+
+.full-width-height {
+  width: 100%;
+  height: 100%; }
+
+body, li, ul {
+  padding: 0;
+  margin: 0;
+  list-style: none; }
+
 body {
-  background-color: red; }
+  background-color: #152022;
+  color: #7da8bd;
+  font-size: 1.3em;
+  font-weight: 400;
+  font-family: "VT323", monospace;
+  letter-spacing: 1px; }
+
+#quad_graph_container, #leaderboard {
+  width: 65vh; }
+
+#mine_quadrants {
+  height: 40vh; }
+  #mine_quadrants rect {
+    fill: #7da8bd; }
+
+#line_graph {
+  height: 60vh; }
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 2px; }
+
+#leaderboard .algowin {
+  transition: all 0.4s;
+  background-color: rgba(255, 255, 255, 0.3); }
+
+#leaderboard td {
+  text-align: center;
+  padding: 0 0.5em; }
+
+.axis .tick line {
+  stroke: #7da8bd; }
+
+.axis .domain {
+  stroke: none; }
+
+.axis text {
+  fill: #7da8bd;
+  font-size: 1.3em; }

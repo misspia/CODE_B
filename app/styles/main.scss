@@ -1,6 +1,66 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+@import url('https://fonts.googleapis.com/css?family=VT323');
+
 @import 'partials/variables';
 @import 'partials/assets';
+@import 'partials/layout';
 
 body {
-	background-color: red;
+	
+	background-color: $background;
+	
+	color: $baseColor;
+	font-size:1.3em;
+	font-weight:400;
+
+	font-family:$font;
+	letter-spacing: 1px;
+}
+
+#quad_graph_container, #leaderboard{
+	width:65vh;
+}
+#mine_quadrants{
+	height: 40vh;
+
+	rect{
+		fill: $baseColor;
+	}
+}
+
+ #line_graph{
+ 	height:60vh;
+ }
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 2px;
+}
+
+#leaderboard{
+	.algowin{
+		transition: all 0.4s;
+		background-color:rgba(255,255,255, 0.3);
+	}
+	td{
+		text-align:center;
+		padding:0 0.5em;
+	}
+}
+
+.axis{
+	.tick{
+		line{
+			stroke:$baseColor;
+		}
+	}
+	.domain{
+		stroke:none;
+	}
+
+	text{
+		fill: $baseColor;
+		font-size:1.3em;
+	}
 }
