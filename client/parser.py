@@ -73,7 +73,7 @@ def scan(input):
     for i in range(num_mines):
         if num_mines == 0:
             break
-        mines.append({"x":float(myscan[mines_split+3+i*3]),"y":float(myscan[mines_split+4+i*3])})
+        mines.append({"name":myscan[mines_split+2+i*3],"x":float(myscan[mines_split+3+i*3]),"y":float(myscan[mines_split+4+i*3])})
 
     for i in range(num_players):
         if num_players == 0:

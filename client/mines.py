@@ -1,11 +1,11 @@
 from navigation import *
 
-def update_minelist(viewed,master,visited):
+def update_minelist(viewed,master):
     newmaster = master
     new = 0
     for i in range(len(viewed)):
-        if (not viewed[i] in master) and (not viewed[i] in visited):
-            newmaster.append(viewed[i])
+        if (not {'x': viewed[i]['x'], 'y': viewed[i]['y']} in master) and (viewed[i]['name'] != 'algowinthis'):
+            newmaster.append({'x': viewed[i]['x'], 'y': viewed[i]['y']})
             new += 1
     return [newmaster,new]
 
