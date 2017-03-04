@@ -21,7 +21,7 @@ def status(input):
             break
         players.append({"x":float(mystatus[players_split+2+i*0]),"y":float(mystatus[players_split+2+i*1]),"dx":float(mystatus[players_split+2+i*2]),"dy":float(mystatus[players_split+2+i*3])})
     
-    for i in range(bombs_split):
+    for i in range(num_bombs):
         if num_bombs == 0:
             break
         bombs.append({"x":float(mystatus[bombs_split+2+i*0]),"y":float(mystatus[bombs_split+2+i*1])})
