@@ -2,6 +2,7 @@ from transmit import connect, send
 from parser import *
 from navigation import *
 from mines import *
+from rocketscience import *
 import random
 import time
 import math
@@ -23,6 +24,7 @@ minelist = []
 visited = []
 closest = {"x": -1,"y": -1}
 iii = 0
+stopped = False
 
 while(True):
     x = random.randint(0, mapwidth)
@@ -42,11 +44,22 @@ while(True):
         visited.append(closest)
     else:
         d = distance_donut(st['x'], st['y'], closest['x'], closest['y'], mapwidth, mapheight)
-        speed = min(1, d / (mapwidth / 10))
-        rad = calc_rad_donut(st['x'], st['y'], closest['x'], closest['y'], mapwidth, mapheight)
+        speed = min(1, d / (mapwidth / 20))
+        #rad = calc_rad_donut(st['x'], st['y'], closest['x'], closest['y'], mapwidth, mapheight)
+        rad = rocketscience(st['x'],st['y'],st['dx'],st['dy'],closest['x'],closest['y'],mapwidth,mapheight,0.01,0.9)
+        if (iii % 10 == 0):
+            print(st['x'],st['y'])
+            print(closest['x'],closest['y'])
+            print(rad)
         send(sock, "ACCELERATE {0} {1}".format(rad, speed))
+        if (d < 50 and not stopped):
+            speed = 0
+            send(sock, "ACCELERATE {0} {1}".format(rad, speed))
+            stopped = True
+            time.sleep(0.5)
         if (d < 10):
             closest = {"x": -1,"y": -1}
+            stopped = False
 
     if len(visited) >= 20:
         minelist = minelist + visited[0:10]
