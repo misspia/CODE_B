@@ -1,1 +1,8 @@
-enoch
+SCAN 1 1
+SCAN_OUT  MINES 0 PLAYERS 0 BOMBS 0
+
+SCOREBOARD
+SCOREBOARD_OUT psyduck 0 0 jsj 13560 1 duckduckgoose 0 0 algowinthis 0 0 candy 55045 3 goose 0 0 bloomburger 0 0 brogrammers 0 0 GoldenGeese 0 0 epsilon 0 0 kevin 0 0 jmv 0 0 vltc 0 0 Bloomberg 0 0 kanata 0 0 JRTrader 0 0 ProofByInduction 0 0 I_bought_$SNAP_IPO 0 0 warren_buffet 0 0 FellowshipOfTheBank 0 0 sgt 0 0 TeamPepe 0 0 beavers 0 0 team_yeg 0 0 technologic 0 0 BigDatta 0 0 AAP 0 0 4geese 1299 1 its_a_nubbin 20755 1
+
+CONFIGURATIONS
+CONFIGURATIONS_OUT MAPWIDTH 10000 MAPHEIGHT 10000 CAPTURERADIUS 5.0 VISIONRADIUS 150.0 FRICTION 0.99 BRAKEFRICTION 0.987 BOMBPLACERADIUS 50.0 BOMBEFFECTRADIUS 15.0 BOMBDELAY 100 BOMBPOWER 15.0 SCANRADIUS 50.0 SCANDELAY 200
