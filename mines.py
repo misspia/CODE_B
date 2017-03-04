@@ -7,8 +7,8 @@ def update_minelist(viewed,master):
     new = 0
     for i in range(len(viewed)):
         if not viewed[i] in master:
-            newmaster.append(viewed[i])
             new += 1
+            newmaster.append(viewed[i])
     return [newmaster,new]
 
 def closest_mine(x,y,minelist,width,height):

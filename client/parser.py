@@ -40,6 +40,10 @@ def scoreboard(input):
     num_teams = int(len(myscoreboard)/3)
     for i in range(num_teams):
         scores.append({"name":myscoreboard[3*i+0],"score":int(myscoreboard[3*i+1]),"mines":int(myscoreboard[3*i+2])})
+    
+    scores = sorted(scores, key=lambda k: k["score"])
+    scores.reverse()
+    
     return scores
 
 def configurations(input):
