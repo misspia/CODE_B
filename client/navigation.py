@@ -1,6 +1,9 @@
 import math
 import random
 
+def vel(dx, dy):
+    return math.sqrt(dx**2 + dy**2)
+
 # Given ship at (x1, y1) and target at (x2, y2)
 # Finds angle between them relative to the vector (1, 0)
 def calc_rad(x1, y1, x2, y2):
