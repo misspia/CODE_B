@@ -9,7 +9,9 @@ def calc_rad(x1, y1, x2, y2):
         rad += 2 * math.pi
     return rad
 
-def calc_rad_donut(x1, y1, x2, y2, width, height):
+def calc_rad_donut(x1, y1, x2, y2, vx, vy, width, height, factor):
+    x1 += vx * factor
+    y1 += vy * factor
     dx = abs(x1 - x2)
     if (dx > width/2):
         if x2 > x1:
