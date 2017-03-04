@@ -43,5 +43,28 @@ def configurations(input):
 
 def scan(input):
     myscan = input.split()[1:]
-    tempinput = ["SCAN_OUT",1,2,3,4] + myscan
-    status(tempinput)
+    mines_split = myscan.index("MINES")
+    players_split = myscan.index("PLAYERS")
+    bombs_split = myscan.index("BOMBS")
+    
+    num_mines = int(myscan[mines_split+1])
+    num_players = int(myscan[players_split+1])
+    num_bombs = int(myscan[bombs_split+1])    
+
+    players = []
+    bombs = []
+
+    for i in range(num_players):
+        if num_players == 0:
+            break
+        players.append({"x":float(myscan[players_split+2+i*0]),"y":float(myscan[players_split+2+i*1]),"dx":float(myscan[players_split+2+i*2]),"dy":float(myscan[players_split+2+i*3])})
+    
+    for i in range(num_bombs):
+        if num_bombs == 0:
+            break
+        bombs.append({"x":float(myscan[bombs_split+2+i*0]),"y":float(myscan[bombs_split+2+i*1])})
+        
+    return {"mines":num_mines, "players":players,"bombs":bombs}
+
+scantest="SCAN_OUT  MINES 0 PLAYERS 1 6859.416121534596 6988.998490048922 9.899999999995158 7.21474662271831E-12 BOMBS 0"
+print(scan(scantest))
