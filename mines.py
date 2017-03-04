@@ -5,9 +5,9 @@
 def update_minelist(viewed,master):
     newmaster = master
     new = 0
-    for i in range(len(seen_mines)):
-        if not seen_mines[i] in master_mines:
-            newmaster.append(seen_mines[i])
+    for i in range(len(viewed)):
+        if not viewed[i] in master:
+            newmaster.append(viewed[i])
             new += 1
     return [newmaster,new]
 
