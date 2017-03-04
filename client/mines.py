@@ -1,11 +1,12 @@
 from navigation import *
 
-def update_minelist(viewed,master):
+def update_minelist(viewed,master,visited):
     newmaster = master
     new = 0
     for i in range(len(viewed)):
-        if (not {'x': viewed[i]['x'], 'y': viewed[i]['y']} in master) and (viewed[i]['name'] != 'algowinthis'):
-            newmaster.append({'x': viewed[i]['x'], 'y': viewed[i]['y']})
+        dictentry = {'x': viewed[i]['x'], 'y': viewed[i]['y']}
+        if (not dictentry in master) and (not dictentry in visited) and (viewed[i]['name'] != 'algowinthis'):
+            newmaster.append(dictentry)
             new += 1
     return [newmaster,new]
 
