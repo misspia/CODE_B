@@ -32,7 +32,7 @@ def status(input):
             break
         bombs.append({"x":float(mystatus[bombs_split+2+i*2]),"y":float(mystatus[bombs_split+3+i*2])})
               
-    return {"x":x, "y":y, "dx":dx, "dy":dy, "mines":mines, "players":players,"bombs":bombs}
+    return {"x":x, "y":y, "dx":dx, "dy":dy, "mines":mines, "players":players,"bombs":bombs, "minecount":len(mines),"playercount":len(players),"bombcount":len(bombs)}
 
 def scoreboard(input):
     scores = []
@@ -76,8 +76,4 @@ def scan(input):
             break
         bombs.append({"x":float(myscan[bombs_split+2+i*2]),"y":float(myscan[bombs_split+3+i*2])})
         
-    return {"mines":mines, "players":players,"bombs":bombs}
-
-scantest="SCAN_OUT  MINES 0 PLAYERS 1 6859.416121534596 6988.998490048922 9.899999999995158 7.21474662271831E-12 BOMBS 0"
-scantest2="SCAN_OUT  MINES 2 -- 9791.988798920302 859.919907528256 -- 432.2832063170068 510.75312424783027 PLAYERS 0 BOMBS 0"
-print(scan(scantest2))
+    return {"mines":mines, "players":players,"bombs":bombs, "minecount":len(mines),"playercount":len(players),"bombcount":len(bombs)}
