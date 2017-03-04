@@ -1,9 +1,9 @@
 import socket
 import sys
 
+HOST, PORT = "codebb.cloudapp.net", 17429
 
 def run(user, password, * commands):
-    HOST, PORT = "codebb.cloudapp.net", 17429
     data = user + " " + password + "\n" + "\n".join(commands) + "\nCLOSE_CONNECTION\n"
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
 
@@ -16,7 +16,6 @@ def run(user, password, * commands):
             rline = sfile.readline()
 
 def subscribe(user, password):
-    HOST, PORT = "codebb.cloudapp.net", 17429
     data = user + " " + password + "\nSUBSCRIBE\n"
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
         sock.connect((HOST, PORT))
