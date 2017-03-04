@@ -81,6 +81,22 @@ def for_pia1():
     #with open('minedataforpia.json', 'w') as fp:
     #    json.dump(exportlist, fp)
 
+def for_pia2():
+    mylist=[]
+    f=open("scoredata.json")
+    for line in f:
+        mylist.append(json.loads(line))
+    
+    exportlist=[]
+    for i in range(len(mylist)):
+        teamlist=[]
+        for z in range(len(mylist[i])):
+            teamlist.append({"team":mylist[i][z]["name"],"mines":mylist[i][z]["mines"]})
+        
+        exportlist.append(teamlist)
+    with open('scoredataforpia.json', 'w') as fp:
+       json.dump(exportlist, fp)           
+
 """
 for i in range(len())
 
