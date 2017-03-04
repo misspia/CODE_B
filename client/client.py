@@ -14,11 +14,13 @@ USER, PASSWORD = "algowinthis", "unicorns578"
 sock = connect(HOST, PORT, USER, PASSWORD)
 
 send(sock, "ACCELERATE 0 1")
+send(sock, "STATUS")
 config = configurations(send(sock, "CONFIGURATIONS"))
 mapwidth = config['mapwidth']
 mapheight = config['mapheight']
 while(True):
-    s = status(send(sock, "STATUS"))
-    score = send(sock, "SCAN {0} {1}".format(s['x'], s['y']))
-    print(score)
+    x = random.randint(0, mapwidth)
+    y = random.randint(0, mapwidth)
+    s = scan(send(sock, "SCAN {0} {1}".format(x, y)))
+    print(s)
     time.sleep(2)
