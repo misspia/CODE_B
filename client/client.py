@@ -12,7 +12,7 @@ USER, PASSWORD = "algowinthis", "unicorns578"
 
 #fstatus = open('statusdata', 'w')
 #fminelist = open('minedata', 'w')
-fscoreboard = open('scoredata', 'w')
+#fscoreboard = open('scoredata', 'w')
 
 #HOST, PORT = "localhost", 17429
 #USER, PASSWORD = "a", "a"
@@ -49,9 +49,9 @@ while(True):
         print("Visited Mines: {0}".format(len(visited)))
         print("Speed: {0}".format(math.sqrt(st['dx']**2 + st['dy']**2)))
         print("")
-        sb = scoreboard(send(sock, "SCOREBOARD"))
-        fscoreboard.write(json.dumps(sb))
-        fscoreboard.write('\n')
+        #sb = scoreboard(send(sock, "SCOREBOARD"))
+        #fscoreboard.write(json.dumps(sb))
+        #fscoreboard.write('\n')
     if (len(minelist) > 0 and closest['x'] < 0):
         closest = closest_mine(st['x'], st['y'], minelist, mapwidth, mapheight)
         minelist.remove(closest)
@@ -71,7 +71,7 @@ while(True):
         if (d < 50):
             send(sock, "ACCELERATE {0} {1}".format(rad, -1))
             print("Reverse Thrust")
-            time.sleep(1.75)
+            time.sleep(2)
             print("Idle")
             closest = {"x": -1,"y": -1}
             start_brake = True
@@ -81,6 +81,8 @@ while(True):
     if len(visited) >= 20:
         minelist = minelist + visited[0:10]
         visited = visited[10:]
+    if len(minelist) >= 30:
+        minelist = []
     #fminelist.write(json.dumps(minelist + visited))
     #fminelist.write('\n')
     iii += 1
