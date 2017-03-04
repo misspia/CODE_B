@@ -1,14 +1,11 @@
 import socket
 import sys
 
-HOST, PORT = "codebb.cloudapp.net", 17429
-#HOST, PORT = "localhost", 17429
-
-def connect(user, password):
+def connect(host, port, user, password):
     data = user + " " + password + "\n"
     print("Client: {0}".format(data))
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    sock.connect((HOST, PORT))
+    sock.connect((host, port))
     sock.sendall(bytes(data, "utf-8"))
     return sock
 
