@@ -25,9 +25,9 @@ mapwidth = config['mapwidth']
 mapheight = config['mapheight']
 scandelay = config['scandelay']
 bombdelay = config['bombdelay']
-print(bombdelay)
 minelist = []
 visited = []
+dgg = []
 closest = {"x": -1,"y": -1}
 iii = 0
 start_brake = False
@@ -38,51 +38,69 @@ while(True):
     sc = send(sock, "SCAN {0} {1}".format(x, y))
     if "ERROR" not in sc:
         sc = scan(sc)
-        minelist = update_minelist(sc['mines'], minelist, visited)[0]
+        [minelist, dgg, unused] = update_minelist(sc['mines'], minelist, dgg, visited)
     st = status(send(sock, "STATUS"))
-    minelist = update_minelist(st['mines'], minelist, visited)[0]
+    [minelist, dgg, unused] = update_minelist(st['mines'], minelist, dgg, visited)
     #fstatus.write(json.dumps(st))
     #fstatus.write('\n')
 
     if (iii % 10 == 0):
+        print("Going to {0}".format(closest))
         print("Num Mines To Explore: {0}".format(len(minelist)))
-        print("Visited Mines: {0}".format(len(visited)))
+        print("Num Visited: {0}".format(len(visited)))
         print("Speed: {0}".format(math.sqrt(st['dx']**2 + st['dy']**2)))
         print("")
-        #sb = scoreboard(send(sock, "SCOREBOARD"))
+        sb = scoreboard(send(sock, "SCOREBOARD"))
+        print(sb[0])
+        print(sb[1])
+        print(sb[2])
+        print(sb[3])
         #fscoreboard.write(json.dumps(sb))
         #fscoreboard.write('\n')
     if (len(minelist) > 0 and closest['x'] < 0):
-        closest = closest_mine(st['x'], st['y'], minelist, mapwidth, mapheight)
-        minelist.remove(closest)
-        visited.append(closest)
+            closest = closest_mine(st['x'], st['y'], minelist, mapwidth, mapheight)
+            ref = "usual"
     else:
         d = distance_donut(st['x'], st['y'], closest['x'], closest['y'], mapwidth, mapheight)
-        if start_brake and vel(st['dx'], st['dy']) < 0.5:
+        if start_brake and vel(st['dx'], st['dy']) < 2.5 and d > mapwidth/2:
+            start_brake = False
+            print("Full Thrust")
+        elif start_brake and vel(st['dx'], st['dy']) < 1.5 and d > mapwidth/3:
+            start_brake = False
+            print("Full Thrust")
+        elif start_brake and vel(st['dx'], st['dy']) < 0.5 and d > mapwidth/4:
+            start_brake = False
+            print("Full Thrust")
+        elif start_brake and vel(st['dx'], st['dy']) < 0.5:
             start_brake = False
             print("Full Thrust")
         if (start_brake):
             speed = 0
         else:
             speed = 1
-        rad = calc_rad_donut(st['x'], st['y'], closest['x'], closest['y'], st['dx'], st['dy'], mapwidth, mapheight, 10)
+        rad = calc_rad_donut(st['x'], st['y'], closest['x'], closest['y'], st['dx'], st['dy'], mapwidth, mapheight, 15)
         #print(closest)
         #print(rad)
-        if (d < 50):
+        if (d < 50 and closest['x'] >= 0):
+            send(sock, "ACCELERATE {0} {1}".format(rad, -1))
+            send(sock, "ACCELERATE {0} {1}".format(rad, -1))
+            send(sock, "ACCELERATE {0} {1}".format(rad, -1))
+            send(sock, "ACCELERATE {0} {1}".format(rad, -1))
             send(sock, "ACCELERATE {0} {1}".format(rad, -1))
             print("Reverse Thrust")
-            time.sleep(2)
             print("Idle")
+            minelist.remove(closest)
+            visited.append(closest)
+            if (ref == "dgg"):
+                dgg.remove(closest)
             closest = {"x": -1,"y": -1}
             start_brake = True
             speed = 0
         send(sock, "ACCELERATE {0} {1}".format(rad, speed))
 
-    if len(visited) >= 20:
-        minelist = minelist + visited[0:10]
-        visited = visited[10:]
-    if len(minelist) >= 30:
-        minelist = []
-    #fminelist.write(json.dumps(minelist + visited))
+    #fminelist.write(json.dumps(minelist))
     #fminelist.write('\n')
     iii += 1
+    if len(visited) >= 10:
+        minelist = minelist + visited
+        visited = []

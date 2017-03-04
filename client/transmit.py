@@ -16,7 +16,8 @@ def send(sock, * commands):
     sock.sendall(bytes(data, "utf-8"))
     sfile = sock.makefile()
     rline = sfile.readline()
-    #print("Server: {0}".format(rline))
+    if ("BOMB_OUT" in rline):
+        print("Server: {0}".format(rline))
     return rline
 
 def run(user, password, * commands):
