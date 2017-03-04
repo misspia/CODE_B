@@ -42,6 +42,6 @@ def configurations(input):
     return configs
 
 def scan(input):
-    myscan = input.split()
-    tempinput = [1,2,3,4] + myscan
+    myscan = input.split()[1:]
+    tempinput = ["SCAN_OUT",1,2,3,4] + myscan
     status(tempinput)
