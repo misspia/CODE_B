@@ -52,7 +52,6 @@ while(True):
         #fscoreboard.write('\n')
     if (len(minelist) > 0 and closest['x'] < 0):
         closest = closest_mine(st['x'], st['y'], minelist, mapwidth, mapheight)
-        minelist.remove(closest)
     else:
         d = distance_donut(st['x'], st['y'], closest['x'], closest['y'], mapwidth, mapheight)
         if start_brake and vel(st['dx'], st['dy']) < 0.5:
@@ -62,14 +61,18 @@ while(True):
             speed = 0
         else:
             speed = 1
-        rad = calc_rad_donut(st['x'], st['y'], closest['x'], closest['y'], st['dx'], st['dy'], mapwidth, mapheight, 10)
+        rad = calc_rad_donut(st['x'], st['y'], closest['x'], closest['y'], st['dx'], st['dy'], mapwidth, mapheight, 15)
         #print(closest)
         #print(rad)
-        if (d < 50):
+        if (d < 50 and closest['x'] >= 0):
+            send(sock, "ACCELERATE {0} {1}".format(rad, -1))
+            send(sock, "ACCELERATE {0} {1}".format(rad, -1))
+            send(sock, "ACCELERATE {0} {1}".format(rad, -1))
+            send(sock, "ACCELERATE {0} {1}".format(rad, -1))
             send(sock, "ACCELERATE {0} {1}".format(rad, -1))
             print("Reverse Thrust")
-            time.sleep(2)
             print("Idle")
+            minelist.remove(closest)
             closest = {"x": -1,"y": -1}
             start_brake = True
             speed = 0
